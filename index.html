@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Budget App</title>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"></link>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+
+</head>
+<body>
+
+<div class="container">
+  <h3>Budget App</h3>
+
+  <h4>Categories</h4>
+  
+  Total Spending: $124.62
+  <h4>Transactions</h4>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Title</th>
+        <th>Amount</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input class="form-control category-input"></td>
+        <td><input class="form-control title-input"></td>
+        <td><input class="form-control amount-input"></td>
+        <td><input class="form-control date-input"></td>
+        <td><button class="btn btn-success add-transaction">Add</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-striped">
+    <tbody class="transactions-list">
+      
+    </tbody>
+  </table>
+
+</div>
+
+<script type="text/template" class="transactions-list-template">
+  <td><span class="category"><%= category %></span></td>
+  <td><span class="title"><%= title %></span></td>
+  <td><span class="amount"><%= amount * 2 %></span></td>
+  <td><span class="date"><%= date %></span></td>
+</script>
+
+<script type="text/template" class="transactions-list-template">
+  <%= b%>
+</script>
+
+
+<script type="text/template" class="expense-box-template">
+  <div class="col-md-3 col-sm-6">
+              <div class="widget widget-stats bg-purple">
+                  <div class="stats-icon stats-icon-lg"><i class="fa fa-shopping-cart fa-fw"></i></div>
+                  <div class="stats-title">Monthly Budget</div>
+                  <div class="stats-number">$2532</div>
+                    <div class="stats-progress progress">
+                      <div class="progress-bar" style="width: 76.3%;"></div>
+                    </div>
+                  <div class="stats-desc">You are at (76.3%) of your monthly budget</div>
+              </div>
+  </div>
+</script>
+
+
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/backbone/backbone.js"></script>
+    <script src="transaction.js"></script>
+    <script src="expense_category.js"></script>
+</body>
+</html>
