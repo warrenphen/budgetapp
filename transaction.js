@@ -1,10 +1,5 @@
 // Backbone Model
 
-var Excategory = Backbone.Model.extend({
-    name: '',
-    budget: ''
-})
-
 var Transaction = Backbone.Model.extend({
     date: '',
     title: '',
@@ -12,37 +7,13 @@ var Transaction = Backbone.Model.extend({
     amount: ''
 });
 
-
-// Instantiate Model
-
-var entertainment = new Excategory({
-    name: 'entertainment',
-    budget: '200'
-  });
-
-var groceries = new Excategory({
-    name: 'groceries',
-    budget: '400'
-  });
-
-var restaurants = new Excategory({
-    name: 'restaurants',
-    budget: '350'
-  });
-
-var transportation = new Excategory({
-    name: 'transportation',
-    budget: '200'
-  });
-
 // Backbone Collection
 
-var Excategory = Backbone.Collection.extend({});
-var Transactions = Backbone.Collection.extend({});
+var Transactions = Backbone.Collection.extend({
+});
 
 // instantiate a Collection
 
-var excategories = new Excategory();
 var transactions = new Transactions();
 
 //Backbone View for one Transaction
@@ -67,7 +38,6 @@ var TransactionsView = Backbone.View.extend({
   el: $('.transactions-list'),
   initialize: function() {
     this.model.on('add', this.render, this);
-
   },
   render: function() {
     var self = this;
@@ -85,6 +55,7 @@ var transactionsView = new TransactionsView();
 // On Click New Transaction function
 
 $(document).ready(function() {
+  var totalSpending = 0;
   $('.add-transaction').on('click', function() {
     var transaction = new Transaction({
       date: $('.date-input').val(),
@@ -92,11 +63,16 @@ $(document).ready(function() {
       category: $('.category-input').val(),
       amount: $('.amount-input').val()
     });
-    $('.category-input').val('');
-    $('.date-input').val('');
-    $('.title-input').val('');
-    $('.amount-input').val('');
-    console.log(transaction.toJSON());
+    $('.category-input').val('uncategorized');
+    $('.date-input').val('9/8/2015');
+    $('.title-input').val('Un-named');
+    $('.amount-input').val( ((100 * Math.random())+ 1).toFixed(2)  );
+    
+    transJSON = transaction.toJSON();
+    totalSpending = totalSpending + parseFloat(transJSON.amount);
+    console.log("You've spent $" + totalSpending.toFixed(2));
     transactions.add(transaction);
+
+
   });
 });
