@@ -43,7 +43,7 @@ var TransactionsView = Backbone.View.extend({
     var self = this;
     this.$el.html('');
     _.each(this.model.toArray(), function(transaction){
-      self.$el.append((new TransactionView({model: transaction})).render().$el);
+      self.$el.prepend((new TransactionView({model: transaction})).render().$el);
     });
     return this;
   }
@@ -64,9 +64,9 @@ $(document).ready(function() {
       amount: $('.amount-input').val()
     });
     $('.category-input').val('uncategorized');
-    $('.date-input').val('9/8/2015');
+    $('.date-input').val(new Date());
     $('.title-input').val('Un-named');
-    $('.amount-input').val( ((100 * Math.random())+ 1).toFixed(2)  );
+    $('.amount-input').val( ((100 * Math.random())+ 1).toFixed(2) );
     
     transJSON = transaction.toJSON();
     totalSpending = totalSpending + parseFloat(transJSON.amount);
