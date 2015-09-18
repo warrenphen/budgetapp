@@ -37,3 +37,4 @@ var Excategory = Backbone.Collection.extend({});
 //  Instantiate Collection
 
 var excategories = new Excategory([entertainment, groceries, restaurants, transportation]);
+
