@@ -28,13 +28,21 @@ var Budget = Backbone.Model.extend({
 
 // On Click New Transaction function
 
+
+
+
+
 $(document).ready(function() {
   $('.set-budget').on('click', function() {
     var budget = new Budget({
       limit: $('.budget-input').val(),
     });
     $('.budget-input').val('');
+
+    var budgetJSON = budget.toJSON();
+
+    $('.budget').text(parseFloat(budgetJSON.limit));
+    console.log(budgetJSON);
  
-   console.log(budget); 
   });
 });

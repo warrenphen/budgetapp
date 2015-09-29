@@ -101,7 +101,9 @@
 <!-- Budget Stuff -->
 <span class="col-md-3"><input class="form-control budget-input"></span><button class="btn btn-success set-budget">Set Budget</button>
 
-<div class="budget">
+<div style="float:right;">
+  <h4>Budget Limit:</h4>
+   <span class="budget"></span>
   </div>
 
 <br /><br />
@@ -147,12 +149,36 @@
 
 
 
-<script type="text/template" class="transactions-list-template">
-  <td><span class="category"><%= category %></span></td>
-  <td><span class="title"><%= title %></span></td>
-  <td><span class="amount"><%= amount %></span></td>
-  <td><span class="date"><%= date %></span></td>
+<script type="text/template" class="transactions-list-template-underscore">
+  <td>
+    <span class="category">
+      <select id="category">
+        <% _.each(categories, function(cat){  %>
+        <option><%= cat.text %></option>
+        <% }); %>
+      </select>
+    </span>
+  </td>
+  <td><span class="title"><%= tran.title %></span></td>
+  <td><span class="amount"><%= tran.amount %></span></td>
+  <td><span class="date"><%= tran.date %></span></td>
 </script>
+
+<script type="text/template" class="transactions-list-template">
+  <td>
+    <span class="category">
+      <select id="category">
+        {{#each categories}}
+        <option>{{ text }}</option>
+        {{/each}}
+      </select>
+    </span>
+  </td>
+  <td><span class="title">{{ tran.title }}</span></td>
+  <td><span class="amount">{{ tran.amount }}  </span></td>
+  <td><span class="date">{{ tran.date }}  </span></td>
+</script>
+
 
 <script type="text/template" class="budget-template">
         <%= total %>
@@ -161,8 +187,10 @@
   <!-- Backbone Scripts -->
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
+
+    <script src="bower_components/handlebars/handlebars.js"></script>    
     <script src="transaction.js"></script>
-    <script src="expense_category.js"></script>
+    <script src="category.js"></script>
     <script src="budget.js"></script>
 
 
